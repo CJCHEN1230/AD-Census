@@ -10,7 +10,7 @@
 #include "adcensus_types.h"
 
 /**
- * \brief 代价计算器类
+ * \brief 基璸衡竟摸
  */
 class CostComputor {
 public:
@@ -18,77 +18,77 @@ public:
 	~CostComputor();
 
 	/**
-	 * \brief 初始化
-	 * \param width			影像宽
-	 * \param height		影像高
-	 * \param min_disparity	最小视差
-	 * \param max_disparity	最大视差
-	 * \return true: 初始化成功
+	 * \brief ﹍て
+	 * \param width			紇钩糴
+	 * \param height		紇钩蔼
+	 * \param min_disparity	程跌畉
+	 * \param max_disparity	程跌畉
+	 * \return true: ﹍てΘ
 	 */
 	bool Initialize(const sint32& width, const sint32& height, const sint32& min_disparity, const sint32& max_disparity);
 
 	/**
-	 * \brief 设置代价计算器的数据
-	 * \param img_left		// 左影像数据，三通道
-	 * \param img_right		// 右影像数据，三通道
+	 * \brief 砞竚基璸衡竟计沮
+	 * \param img_left		// オ紇钩计沮硄笵
+	 * \param img_right		// 紇钩计沮硄笵
 	 */
 	void SetData(const uint8* img_left, const uint8* img_right);
 
 	/**
-	 * \brief 设置代价计算器的参数
+	 * \brief 砞竚基璸衡竟把计
 	 * \param lambda_ad		// lambda_ad
 	 * \param lambda_census // lambda_census
 	 */
 	void SetParams(const sint32& lambda_ad, const sint32& lambda_census);
 
-	/** \brief 计算初始代价 */
+	/** \brief 璸衡﹍基 */
 	void Compute();
 
-	/** \brief 获取初始代价数组指针 */
+	/** \brief 莉﹍基计舱皐 */
 	float32* get_cost_ptr();
 
 private:
-	/** \brief 计算灰度数据 */
+	/** \brief 璸衡η计沮 */
 	void ComputeGray();
 
-	/** \brief Census变换 */
+	/** \brief Census跑传 */
 	void CensusTransform();
 
-	/** \brief 计算代价 */
+	/** \brief 璸衡基 */
 	void ComputeCost();
 private:
-	/** \brief 图像尺寸 */
+	/** \brief 瓜钩へ */
 	sint32	width_;
 	sint32	height_;
 
-	/** \brief 影像数据 */
+	/** \brief 紇钩计沮 */
 	const uint8* img_left_;
 	const uint8* img_right_;
 
-	/** \brief 左影像灰度数据	 */
+	/** \brief オ紇钩η计沮	 */
 	vector<uint8> gray_left_;
-	/** \brief 右影像灰度数据	 */
+	/** \brief 紇钩η计沮	 */
 	vector<uint8> gray_right_;
 
-	/** \brief 左影像census数组	*/
+	/** \brief オ紇钩census计舱	*/
 	vector<uint64> census_left_;
-	/** \brief 右影像census数组	*/
+	/** \brief 紇钩census计舱	*/
 	vector<uint64> census_right_;
 
-	/** \brief 初始匹配代价	*/
-	vector<float32> cost_init_;
+	/** \brief ﹍で皌基	*/
+	vector<float32> cost_init_; //﹍パオ璸衡Чcensus挡狦width*height*disparity_range
 
 	/** \brief lambda_ad*/
 	sint32 lambda_ad_;
 	/** \brief lambda_census*/
 	sint32 lambda_census_;
 
-	/** \brief 最小视差值 */
+	/** \brief 程跌畉 */
 	sint32 min_disparity_;
-	/** \brief 最大视差值 */
+	/** \brief 程跌畉 */
 	sint32 max_disparity_;
 
-	/** \brief 是否成功初始化标志	*/
+	/** \brief 琌Θ﹍て夹в	*/
 	bool is_initialized_;
 };
 #endif

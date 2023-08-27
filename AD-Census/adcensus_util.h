@@ -1,4 +1,4 @@
-/* -*-c++-*- AD-Census - Copyright (C) 2020.
+ï»¿/* -*-c++-*- AD-Census - Copyright (C) 2020.
 * Author	: Yingsong Li(Ethan Li) <ethan.li.whu@gmail.com>
 * https://github.com/ethan-li-coding/AD-Census
 * Describe	: header of adcensus_util
@@ -12,23 +12,23 @@
 namespace adcensus_util
 {
 	/**
-	* \brief census±ä»»
-	* \param source	ÊäÈë£¬Ó°ÏñÊı¾İ
-	* \param census	Êä³ö£¬censusÖµÊı×é£¬Ô¤·ÖÅä¿Õ¼ä
-	* \param width	ÊäÈë£¬Ó°Ïñ¿í
-	* \param height	ÊäÈë£¬Ó°Ïñ¸ß
+	* \brief censusè®Šæ›
+	* \param source	è¼¸å…¥ï¼Œå½±åƒæ•¸æ“š
+	* \param census	è¼¸å‡ºï¼Œcensuså€¼æ•¸çµ„ï¼Œé åˆ†é…ç©ºé–“
+	* \param width	è¼¸å…¥ï¼Œå½±åƒå¯¬
+	* \param height	è¼¸å…¥ï¼Œå½±åƒé«˜
 	*/
 	void census_transform_9x7(const uint8* source, vector<uint64>& census, const sint32& width, const sint32& height);
-	// Hamming¾àÀë
+	// Hammingè·é›¢
 	uint8 Hamming64(const uint64& x, const uint64& y);
 
 	/**
-	* \brief ÖĞÖµÂË²¨
-	* \param in				ÊäÈë£¬Ô´Êı¾İ
-	* \param out			Êä³ö£¬Ä¿±êÊı¾İ
-	* \param width			ÊäÈë£¬¿í¶È
-	* \param height			ÊäÈë£¬¸ß¶È
-	* \param wnd_size		ÊäÈë£¬´°¿Ú¿í¶È
+	* \brief ä¸­å€¼æ¿¾æ³¢
+	* \param in				è¼¸å…¥ï¼Œæºæ•¸æ“š
+	* \param out			è¼¸å‡ºï¼Œç›®æ¨™æ•¸æ“š
+	* \param width			è¼¸å…¥ï¼Œå¯¬åº¦
+	* \param height			è¼¸å…¥ï¼Œé«˜åº¦
+	* \param wnd_size		è¼¸å…¥ï¼Œçª—å£å¯¬åº¦
 	*/
 	void MedianFilter(const float32* in, float32* out, const sint32& width, const sint32& height, const sint32 wnd_size);
 }

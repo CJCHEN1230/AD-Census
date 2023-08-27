@@ -12,7 +12,7 @@
 #include "adcensus_types.h"
 
 /**
- * \brief 扫描线优化器
+ * \brief 苯磞絬纔て竟
  */
 class ScanlineOptimizer {
 public:
@@ -21,75 +21,75 @@ public:
 
 
 	/**
-	 * \brief 设置数据
-	 * \param img_left		// 左影像数据，三通道 
-	 * \param img_right 	// 右影像数据，三通道
-	 * \param cost_init 	// 初始代价数组
-	 * \param cost_aggr 	// 聚合代价数组
+	 * \brief 砞竚计沮
+	 * \param img_left		// オ紇钩计沮硄笵
+	 * \param img_right 	// 紇钩计沮硄笵
+	 * \param cost_init 	// ﹍基计舱
+	 * \param cost_aggr 	// 籈基计舱
 	 */
 	void SetData(const uint8* img_left, const uint8* img_right, float32* cost_init, float32* cost_aggr);
 
 	/**
-	 * \brief 
-	 * \param width			// 影像宽
-	 * \param height		// 影像高
-	 * \param min_disparity	// 最小视差
-	 * \param max_disparity // 最大视差
+	 * \brief
+	 * \param width			// 紇钩糴
+	 * \param height		// 紇钩蔼
+	 * \param min_disparity	// 程跌畉
+	 * \param max_disparity // 程跌畉
 	 * \param p1			// p1
 	 * \param p2			// p2
 	 * \param tso			// tso
 	 */
-	void SetParam(const sint32& width,const sint32& height, const sint32& min_disparity, const sint32& max_disparity, const float32& p1, const float32& p2, const sint32& tso);
+	void SetParam(const sint32& width, const sint32& height, const sint32& min_disparity, const sint32& max_disparity, const float32& p1, const float32& p2, const sint32& tso);
 
 	/**
-	 * \brief 优化 */
+	 * \brief 纔て */
 	void Optimize();
 
 private:
 	/**
-	* \brief 左右路径优化 → ←
-	* \param cost_so_src		输入，SO前代价数据
-	* \param cost_so_dst		输出，SO后代价数据
-	* \param is_forward			输入，是否为正方向（正方向为从左到右，反方向为从右到左）
+	* \brief オ隔畖纔て △ ■
+	* \param cost_so_src		块SO玡基计沮
+	* \param cost_so_dst		块SO基计沮
+	* \param is_forward			块琌タよタよ眖オはよ眖オ
 	*/
 	void ScanlineOptimizeLeftRight(const float32* cost_so_src, float32* cost_so_dst, bool is_forward = true);
 
 	/**
-	* \brief 上下路径优化 ↓ ↑
-	* \param cost_so_src		输入，SO前代价数据
-	* \param cost_so_dst		输出，SO后代价数据
-	* \param is_forward			输入，是否为正方向（正方向为从上到下，反方向为从下到上）
+	* \brief 隔畖纔て □ ◆
+	* \param cost_so_src		块SO玡基计沮
+	* \param cost_so_dst		块SO基计沮
+	* \param is_forward			块琌タよタよ眖はよ眖
 	*/
 	void ScanlineOptimizeUpDown(const float32* cost_so_src, float32* cost_so_dst, bool is_forward = true);
 
-	/** \brief 计算颜色距离 */
+	/** \brief 璸衡肅︹禯瞒 */
 	inline sint32 ColorDist(const ADColor& c1, const ADColor& c2) {
 		return std::max(abs(c1.r - c2.r), std::max(abs(c1.g - c2.g), abs(c1.b - c2.b)));
 	}
-	
+
 private:
-	/** \brief 图像尺寸 */
+	/** \brief 瓜钩へ */
 	sint32	width_;
 	sint32	height_;
 
-	/** \brief 影像数据 */
+	/** \brief 紇钩计沮 */
 	const uint8* img_left_;
 	const uint8* img_right_;
-	
-	/** \brief 初始代价数组 */
+
+	/** \brief ﹍基计舱 */
 	float32* cost_init_;
-	/** \brief 聚合代价数组 */
+	/** \brief 籈基计舱 */
 	float32* cost_aggr_;
 
-	/** \brief 最小视差值 */
+	/** \brief 程跌畉 */
 	sint32 min_disparity_;
-	/** \brief 最大视差值 */
+	/** \brief 程跌畉 */
 	sint32 max_disparity_;
-	/** \brief 初始的p1值 */
+	/** \brief ﹍p1 */
 	float32 so_p1_;
-	/** \brief 初始的p2值 */
+	/** \brief ﹍p2 */
 	float32 so_p2_;
-	/** \brief tso阈值 */
+	/** \brief tso霩 */
 	sint32 so_tso_;
 };
 #endif

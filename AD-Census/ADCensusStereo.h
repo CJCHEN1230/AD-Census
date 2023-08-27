@@ -11,85 +11,85 @@
 #include "scanline_optimizer.h"
 #include "multistep_refiner.h"
 
-class ADCensusStereo {	
+class ADCensusStereo {
 public:
 	ADCensusStereo();
 	~ADCensusStereo();
 
 	/**
-	* \brief 类的初始化，完成一些内存的预分配、参数的预设置等
-	* \param width		输入，核线像对影像宽
-	* \param height		输入，核线像对影像高
-	* \param option		输入，算法参数
+	* \brief 摸﹍てЧΘㄇず箇だ皌把计箇砞竚单
+	* \param width		块絬钩癸紇钩糴
+	* \param height		块絬钩癸紇钩蔼
+	* \param option		块衡猭把计
 	*/
 	bool Initialize(const sint32& width, const sint32& height, const ADCensusOption& option);
 
 	/**
-	* \brief 执行匹配
-	* \param img_left	输入，左影像数据指针，3通道彩色数据
-	* \param img_right	输入，右影像数据指针，3通道彩色数据
-	* \param disp_left	输出，左影像视差图指针，预先分配和影像等尺寸的内存空间
+	* \brief 磅︽で皌
+	* \param img_left	块オ紇钩计沮皐3硄笵眒︹计沮
+	* \param img_right	块紇钩计沮皐3硄笵眒︹计沮
+	* \param disp_left	块オ紇钩跌畉瓜皐箇だ皌㎝紇钩单へず丁
 	*/
 	bool Match(const uint8* img_left, const uint8* img_right, float32* disp_left);
 
 	/**
-	* \brief 重设
-	* \param width		输入，核线像对影像宽
-	* \param height		输入，核线像对影像高
-	* \param option		输入，算法参数
+	* \brief 砞
+	* \param width		块絬钩癸紇钩糴
+	* \param height		块絬钩癸紇钩蔼
+	* \param option		块衡猭把计
 	*/
 	bool Reset(const uint32& width, const uint32& height, const ADCensusOption& option);
 
 private:
-	/** \brief 代价计算 */
+	/** \brief 基璸衡 */
 	void ComputeCost();
 
-	/** \brief 代价聚合 */
+	/** \brief 基籈 */
 	void CostAggregation();
 
-	/** \brief 扫描线优化	 */
+	/** \brief 苯磞絬纔て	 */
 	void ScanlineOptimize();
 
-	/** \brief 多步骤视差优化	*/
+	/** \brief ˙艼跌畉纔て	*/
 	void MultiStepRefine();
 
-	/** \brief 视差计算（左视图）*/
+	/** \brief 跌畉璸衡オ跌瓜*/
 	void ComputeDisparity();
 
-	/** \brief 视差计算（右视图）*/
+	/** \brief 跌畉璸衡跌瓜*/
 	void ComputeDisparityRight();
 
-	/** \brief 内存释放 */
+	/** \brief ず睦 */
 	void Release();
 
 private:
-	/** \brief 算法参数 */
+	/** \brief 衡猭把计 */
 	ADCensusOption option_;
 
-	/** \brief 影像宽 */
+	/** \brief 紇钩糴 */
 	sint32 width_;
-	/** \brief 影像高 */
+	/** \brief 紇钩蔼 */
 	sint32 height_;
 
-	/** \brief 左影像数据，3通道彩色数据 */
+	/** \brief オ紇钩计沮3硄笵眒︹计沮 */
 	const uint8* img_left_;
-	/** \brief 右影像数据	，3通道彩色数据 */
+	/** \brief 紇钩计沮	3硄笵眒︹计沮 */
 	const uint8* img_right_;
 
-	/** \brief 代价计算器 */
+	/** \brief 基璸衡竟 */
 	CostComputor cost_computer_;
-	/** \brief 代价聚合器 */
+	/** \brief 基籈竟 */
 	CrossAggregator aggregator_;
-	/** \brief 扫描线优化器 */
+	/** \brief 苯磞絬纔て竟 */
 	ScanlineOptimizer scan_line_;
-	/** \brief 多步优化器 */
+	/** \brief ˙纔て竟 */
 	MultiStepRefiner refiner_;
 
-	/** \brief 左影像视差图 */
+	/** \brief オ紇钩跌畉瓜 */
 	float32* disp_left_;
-	/** \brief 右影像视差图 */
+	/** \brief 紇钩跌畉瓜 */
 	float32* disp_right_;
 
-	/** \brief 是否初始化标志	*/
+	/** \brief 琌﹍て夹в	*/
 	bool is_initialized_;
 };

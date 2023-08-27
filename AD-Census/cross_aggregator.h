@@ -11,18 +11,18 @@
 #include <algorithm>
 
 /**
-* \brief 交叉十字臂结构
-* 为了限制内存占用，臂长类型设置为uint8，这意味着臂长最长不能超过255
+* \brief ユ羥挡篶
+* ずノ羥摸砞竚uint8硂種帝羥程ぃ禬筁255
 */
 struct CrossArm {
 	uint8 left, right, top, bottom;
 	CrossArm() : left(0), right(0), top(0), bottom(0) { }
 };
-/**\brief 最大臂长 */
+/**\brief 程羥 */
 #define MAX_ARM_LENGTH 255 
 
 /**
- * \brief 十字交叉域代价聚合器
+ * \brief ユ办基籈竟
  */
 class CrossAggregator {
 public:
@@ -30,23 +30,23 @@ public:
 	~CrossAggregator();
 
 	/**
-	 * \brief 初始化代价聚合器
-	 * \param width		影像宽
-	 * \param height	影像高
-	 * \return true:初始化成功
+	 * \brief ﹍て基籈竟
+	 * \param width		紇钩糴
+	 * \param height	紇钩蔼
+	 * \return true:﹍てΘ
 	 */
 	bool Initialize(const sint32& width, const sint32& height, const sint32& min_disparity, const sint32& max_disparity);
 
 	/**
-	 * \brief 设置代价聚合器的数据
-	 * \param img_left		// 左影像数据，三通道
-	 * \param img_right		// 右影像数据，三通道
-	 * \param cost_init		// 初始代价数组
+	 * \brief 砞竚基籈竟计沮
+	 * \param img_left		// オ紇钩计沮硄笵
+	 * \param img_right		// 紇钩计沮硄笵
+	 * \param cost_init		// ﹍基计舱
 	 */
 	void SetData(const uint8* img_left, const uint8* img_right, const float32* cost_init);
 
 	/**
-	 * \brief 设置代价聚合器的参数
+	 * \brief 砞竚基籈竟把计
 	 * \param cross_L1		// L1
 	 * \param cross_L2		// L2
 	 * \param cross_t1		// t1
@@ -54,61 +54,61 @@ public:
 	 */
 	void SetParams(const sint32& cross_L1, const sint32& cross_L2, const sint32& cross_t1, const sint32& cross_t2);
 
-	/** \brief 聚合 */
+	/** \brief 籈 */
 	void Aggregate(const sint32& num_iters);
 
-	/** \brief 获取所有像素的十字交叉臂数据指针 */
+	/** \brief 莉┮Τ钩ユ羥计沮皐 */
 	CrossArm* get_arms_ptr();
 
-	/** \brief 获取聚合代价数组指针 */
+	/** \brief 莉籈基计舱皐 */
 	float32* get_cost_ptr();
 private:
-	/** \brief 构建十字交叉臂 */
+	/** \brief 篶ユ羥 */
 	void BuildArms();
-	/** \brief 搜索水平臂 */
+	/** \brief 穓キ羥 */
 	void FindHorizontalArm(const sint32& x, const sint32& y, uint8& left, uint8& right) const;
-	/** \brief 搜索竖直臂 */
+	/** \brief 穓捷羥 */
 	void FindVerticalArm(const sint32& x, const sint32& y, uint8& top, uint8& bottom) const;
-	/** \brief 计算像素的支持区像素数量 */
+	/** \brief 璸衡钩や跋钩计秖 */
 	void ComputeSupPixelCount();
-	/** \brief 聚合某个视差 */
+	/** \brief 籈琘跌畉 */
 	void AggregateInArms(const sint32& disparity, const bool& horizontal_first);
 
-	/** \brief 计算颜色距离 */
-	inline sint32 ColorDist(const ADColor& c1,const ADColor& c2) const {
+	/** \brief 璸衡肅︹禯瞒 */
+	inline sint32 ColorDist(const ADColor& c1, const ADColor& c2) const {
 		return std::max(abs(c1.r - c2.r), std::max(abs(c1.g - c2.g), abs(c1.b - c2.b)));
 	}
 private:
-	/** \brief 图像尺寸 */
+	/** \brief 瓜钩へ */
 	sint32	width_;
 	sint32	height_;
 
-	/** \brief 交叉臂 */
+	/** \brief ユ羥 */
 	vector<CrossArm> vec_cross_arms_;
 
-	/** \brief 影像数据 */
+	/** \brief 紇钩计沮 */
 	const uint8* img_left_;
 	const uint8* img_right_;
 
-	/** \brief 初始代价数组指针 */
+	/** \brief ﹍基计舱皐 */
 	const float32* cost_init_;
-	/** \brief 聚合代价数组 */
+	/** \brief 籈基计舱 */
 	vector<float32> cost_aggr_;
 
-	/** \brief 临时代价数据 */
+	/** \brief 羬基计沮 */
 	vector<float32> vec_cost_tmp_[2];
-	/** \brief 支持区像素数量数组 0：水平臂优先 1：竖直臂优先 */
+	/** \brief 纗や跋钩计秖计舱 0キ羥纔 1捷羥纔 */
 	vector<uint16> vec_sup_count_[2];
 	vector<uint16> vec_sup_count_tmp_;
 
-	sint32	cross_L1_;			// 十字交叉窗口的空间域参数：L1
-	sint32  cross_L2_;			// 十字交叉窗口的空间域参数：L2
-	sint32	cross_t1_;			// 十字交叉窗口的颜色域参数：t1
-	sint32  cross_t2_;			// 十字交叉窗口的颜色域参数：t2
-	sint32  min_disparity_;			// 最小视差
-	sint32	max_disparity_;			// 最大视差
+	sint32	cross_L1_;			// ユ怠丁办把计L1
+	sint32  cross_L2_;			// ユ怠丁办把计L2
+	sint32	cross_t1_;			// ユ怠肅︹办把计t1
+	sint32  cross_t2_;			// ユ怠肅︹办把计t2
+	sint32  min_disparity_;			// 程跌畉
+	sint32	max_disparity_;			// 程跌畉
 
-	/** \brief 是否成功初始化标志	*/
+	/** \brief 琌Θ﹍て夹в	*/
 	bool is_initialized_;
 };
 #endif

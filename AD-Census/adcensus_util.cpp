@@ -13,14 +13,14 @@ void adcensus_util::census_transform_9x7(const uint8* source, vector<uint64>& ce
 		return;
 	}
 
-	// 逐像素计算census值
+	// 硋钩璸衡census
 	for (sint32 i = 4; i < height - 4; i++) {
 		for (sint32 j = 3; j < width - 3; j++) {
 
-			// 中心像素值
+			// いみ钩
 			const uint8 gray_center = source[i * width + j];
 
-			// 遍历大小为9x7的窗口内邻域像素，逐一比较像素值与中心像素值的的大小，计算census值
+			// 筂菌9x7怠ず綟办钩硋ゑ耕钩籔いみ钩璸衡census
 			uint64 census_val = 0u;
 			for (sint32 r = -4; r <= 4; r++) {
 				for (sint32 c = -3; c <= 3; c++) {
@@ -32,7 +32,7 @@ void adcensus_util::census_transform_9x7(const uint8* source, vector<uint64>& ce
 				}
 			}
 
-			// 中心像素的census值
+			// いみ钩census
 			census[i * width + j] = census_val;
 		}
 	}
@@ -56,7 +56,7 @@ void adcensus_util::MedianFilter(const float32* in, float32* out, const sint32& 
 {
 	const sint32 radius = wnd_size / 2;
 	const sint32 size = wnd_size * wnd_size;
-	
+
 	std::vector<float32> wnd_data;
 	wnd_data.reserve(size);
 
